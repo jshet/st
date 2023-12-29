@@ -7,7 +7,7 @@ st.set_page_config(layout="wide")
 
 # Streamlit App
 st.title("RE Map App")
-
+st.markdown("Welcome to the RE Map App! This is very basic demo app for visualizing localized real estate market data. Basically it's a dynamic choropleth map with a table. Upload a CSV (from realtor.com or similar) and pick a column to chart. Or just use the example data provided.")
 # File uploader for CSV file
 uploaded_file = st.file_uploader("Upload a CSV file", type=["csv"])
 
@@ -18,12 +18,14 @@ if uploaded_file is not None:
 else:
     df = pd.read_csv("example.csv")
 
+"### Choose a column and color scheme"
 # Dropdown for selecting column to map
-column_to_map = st.selectbox("Select Column to Map", df.columns)
+column_to_map = st.selectbox("Select a column to map", df.columns)
 
 # Dropdown for selecting color scale
-color_scale = st.selectbox("Select Color Scale", px.colors.named_colorscales())
+color_scale = st.selectbox("Select a color scale (it won't break anything)", px.colors.named_colorscales())
 
+"### View the results"
 # Choropleth map
 fig = px.choropleth(
     df,
@@ -38,15 +40,17 @@ fig = px.choropleth(
 
 col1, col2 = st.columns([1,2], gap="large")
 
-df = df[['state', column_to_map]].sort_values(by=[column_to_map], ascending=False)
+selected_df = df[['state', column_to_map]].sort_values(by=[column_to_map], ascending=False)
 
 with col1:
     percent_col = st.checkbox(f"Format '{column_to_map}' as %?")
-
     if percent_col:
-        df[column_to_map] = df[column_to_map].map('{:.2%}'.format)
-    st.dataframe(df, hide_index=True)
+        selected_df[column_to_map] = selected_df[column_to_map].map('{:.2%}'.format)
+    st.dataframe(selected_df, hide_index=True)
 
 # Display the choropleth map
 with col2:
     st.plotly_chart(fig, use_container_width=True)
+
+"### Data"
+df
