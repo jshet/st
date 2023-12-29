@@ -33,7 +33,7 @@ fig = px.choropleth(
     hover_name="state",
     color_continuous_scale=color_scale,
     scope="usa",
-    title=f"{column_to_map} by State"
+    title=f"{column_to_map.replace('-',' ').capitalize()} by State"
 )
 
 col1, col2 = st.columns([1,2], gap="large")
