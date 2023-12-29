@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&family=Roboto:wght@100;300;500;900&display=swap');
+
+h1, h2, h3, h4 {
+    font-family: 'Roboto', sans-serif; 
+    color: #091747;
+}
+
+h4 {
+    font-size: 1rem;
+}
+
+p {
+    font-family: 'Lilita+One';
+}
