@@ -36,7 +36,7 @@ with col1:
     "#### Select one or more states (optional)"
     # Dropdown for selecting state to map
     container = st.container()
-    all = st.checkbox("Select all")
+    all = st.checkbox("Select all", value=True)
     
     if all:
         selected_options = container.multiselect("Select one or more options:",
