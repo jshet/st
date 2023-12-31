@@ -32,7 +32,9 @@ with col1:
     "#### Choose a column"
     # Dropdown for selecting column to map
     column_to_map = st.selectbox("Select a column to map", df.columns)
-
+    if column_to_map == 'month_date_yyyymm':
+            column_to_map = 'active_listing_count'
+            
     "#### Select one or more states (optional)"
     # Dropdown for selecting state to map
     container = st.container()

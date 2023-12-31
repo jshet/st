@@ -35,6 +35,9 @@ with col1:
     "#### Choose a column"
     # Dropdown for selecting column to map
     column_to_map = st.selectbox("Select a column to map", df.columns)
+    if column_to_map == 'month_date_yyyymm':
+        column_to_map = 'active_listing_count'
+        
     percent_col = st.checkbox(f"Format '{column_to_map}' as %?")
 
     "#### Pick a color scheme (optional)"
